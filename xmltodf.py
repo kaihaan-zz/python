@@ -4,9 +4,6 @@ import re
 from urllib.request import urlopen
 
 depth=0
-cols=[]
-values = []
-key_to_append=''
 record = {}
 allrecords=[]
 namespaces=[]
@@ -22,12 +19,9 @@ def is_not_empty(any_structure):
         return False
  
 #convert XML to pandas.DataFrame by iterating through XML tree
-#iterparse generates 'start' event when an XML tag opens
-#and an 'end' even when one closes
-#we can use this to keep track of how deep we are into the XML tree
 
-# '/Users/kaihaan.jamshidi/Data/test.xml'
-# urlopen("http://online.effbot.org/rss.xml")
+# Test sources:
+# http://online.effbot.org/rss.xml
 # http://api.worldbank.org/v2/indicators
     
 for event, node in et.iterparse(urlopen("http://api.worldbank.org/v2/indicators"), ['start', 'end', 'start-ns', 'end-ns']):
